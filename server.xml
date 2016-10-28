@@ -2,22 +2,27 @@
 <server description="new server">
   <!-- Enable features -->
   <featureManager>
-    <feature>webProfile-7.0</feature> <!-- Not sure if this is actually needed think it provides servlet spec. -->
-    <feature>localConnector-1.0</feature> <!-- Required for ide integration -->
+    <!-- Not sure if this is actually needed think it provides servlet spec. -->
+    <feature>webProfile-7.0</feature>
+    <!-- Required for ide integration -->
+    <feature>localConnector-1.0</feature>
+    <!-- Required portlet container features. -->
     <feature>usr:portlet-2.1</feature>
     <feature>usr:portletServing-2.1</feature>
-    <feature>adminCenter-1.0</feature><!-- Enables Admin Center -->
+    <!-- Enables the admin center. Not required -->
+    <feature>adminCenter-1.0</feature>
   </featureManager>
-  
-  <!-- Admin center specific config http://www.ibm.com/support/knowledgecenter/SSEQTP_8.5.5/com.ibm.websphere.wlp.doc/ae/twlp_ui_setup.html->
+
+  <!-- Admin center specific config http://www.ibm.com/support/knowledgecenter/SSEQTP_8.5.5/com.ibm.websphere.wlp.doc/ae/twlp_ui_setup.html-->
   <!-- Secure login for admin center. -->
   <quickStartSecurity userName="admin" userPassword="adminpwd" />
   <keyStore id="defaultKeyStore" password="Liberty" />
 
   <!-- To access this server from a remote client add a host attribute to the following element, e.g. host="*" -->
   <httpEndpoint id="defaultHttpEndpoint" host="*" httpPort="9080" httpsPort="9443" />
-  <!-- Automatically expand WAR files and EAR files -->
-  <applicationManager autoExpand="true" />
+
+  <!-- Automatically expand WAR files and EAR files and sets a longer timeout for applications to start.-->
+  <applicationManager autoExpand="true" startTimeout="600"/>
 
   <!-- Required for IDE integration -->
   <applicationMonitor updateTrigger="mbean" />
