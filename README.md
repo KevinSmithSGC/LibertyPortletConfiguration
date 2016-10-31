@@ -2,7 +2,14 @@
 Configuration to run WebSphere Liberty with portlets.  Also deploys a test portlet to verify that your configuration for running portlets is correct.
 
 ## Quick Start
-Place files under usr/servers/{serverName} and run bin/server start
+Place files under usr/servers/{serverName} 
+
+Run the following command to install required features
+```sh
+bin/installUtility install {serverName}
+```
+
+and run bin/server start
 
 Navigate to <http://localhost:9080/.SampleLibertyPortlet/SampleLibertyPortlet>
 
