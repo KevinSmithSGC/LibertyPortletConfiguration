@@ -7,27 +7,42 @@
     <!-- Required portlet container features. -->
     <feature>usr:portlet-2.1</feature>
     <feature>usr:portletServing-2.1</feature>
-    <!-- Required for JMS -->
+    <!-- Required for jndi -->
     <feature>jndi-1.0</feature>
+    <!-- Required for JMS -->
     <feature>wasJmsClient-2.0</feature>
     <feature>wasJmsServer-1.0</feature>
     <!-- Enables the admin center. Not required -->
-    <feature>adminCenter-1.0</feature>
+    <!-- <feature>adminCenter-1.0</feature> -->
+    <feature>jdbc-4.1</feature>
   </featureManager>
+
   <!-- Admin center specific config http://www.ibm.com/support/knowledgecenter/SSEQTP_8.5.5/com.ibm.websphere.wlp.doc/ae/twlp_ui_setup.html-->
   <!-- Secure login for admin center. -->
-  <quickStartSecurity userName="admin" userPassword="adminpwd" />
-  <keyStore id="defaultKeyStore" password="Liberty" />
+  <!-- <quickStartSecurity userName="admin" userPassword="adminpwd" />
+  <keyStore id="defaultKeyStore" password="Liberty" /> -->
+
   <!-- To access this server from a remote client add a host attribute to the following element, e.g. host="*" -->
   <httpEndpoint id="defaultHttpEndpoint" host="*" httpPort="9080" httpsPort="9443" />
   <!-- Automatically expand WAR files and EAR files and sets a longer timeout for applications to start.-->
   <applicationManager autoExpand="true" startTimeout="600" />
   <!-- Required for IDE integration -->
   <applicationMonitor updateTrigger="mbean" />
+  <!-- Eagerly load applications so service Listeners are started. -->
+  <webContainer deferServletLoad="false"/>
 
   <!-- JMS Config -->
   <connectionManager id="ConMgr" maxPoolSize="2"/>
+
+  <!-- App zone Queue Connection Factory -->
   <jmsQueueConnectionFactory id="appQCF" jndiName="jms/appQCF">
+    <properties.wasJms
+      nonPersistentMapping="ExpressNonPersistent"  
+      persistentMapping="ReliablePersistent"/>
+  </jmsQueueConnectionFactory>
+
+  <!-- Data zone Queue Connection Factory -->
+  <jmsQueueConnectionFactory id="dasQCF" jndiName="jms/dasQCF">
     <properties.wasJms
       nonPersistentMapping="ExpressNonPersistent"  
       persistentMapping="ReliablePersistent"/>
@@ -50,5 +65,33 @@
   <jmsQueue jndiName="jms/qmatCECAppRejectQueue">
     <properties.wasJms queueName="REJECT" deliveryMethod="Application" timeToLive="500000" priority="1" readAhead="AsConnection"/>
   </jmsQueue>
+
+  <jmsQueue jndiName="jms/qmatCECServiceRequestQueue">
+    <properties.wasJms queueName="REQUEST" deliveryMethod="Application" timeToLive="500000" priority="1" readAhead="AsConnection"/>
+  </jmsQueue>
+
+  <jmsQueue jndiName="jms/qmatCECServiceReplyQueue">
+    <properties.wasJms queueName="REPLY" deliveryMethod="Application" timeToLive="500000" priority="1" readAhead="AsConnection"/>
+  </jmsQueue>
+
+  <jmsQueue jndiName="jms/qmatCECServiceRejectQueue">
+    <properties.wasJms queueName="REJECT" deliveryMethod="Application" timeToLive="500000" priority="1" readAhead="AsConnection"/>
+  </jmsQueue>
+
+  <library id="OracleLib">
+    <fileset dir="C:/Qmat/oracle" includes="ojdbc6.jar"/>
+  </library>
+
+  <dataSource id="FrwkDataSource" jndiName="jdbc/frwkDataSource">
+    <jdbcDriver libraryRef="OracleLib"/>
+    <properties.oracle URL="jdbc:oracle:thin:@//207.97.238.248:1521/SCGDEV10" password="C827ukva6" user="QMATWAS2"/>
+  </dataSource>
+
+  <dataSource id="QmatDataSource" jndiName="jdbc/qmatCECDataSource">
+    <jdbcDriver libraryRef="OracleLib"/>
+    <properties.oracle URL="jdbc:oracle:thin:@//207.97.238.248:1521/SCGDEV10" password="Pi7BukQ85" user="FRWKWAS2"/>
+  </dataSource>
+
+
 </server>
 
