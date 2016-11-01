@@ -35,19 +35,21 @@ View test servlet at
 
 <http://localhost:9080/.SampleLibertyPortlet/SampleLibertyPortlet>
 
+### Install QMAT
+
+#### Install Portlet
+Build the UI portlet application and place the resulting WAR file in dropins.
+
+#### Install JMS Service
+Build the JMS Service application and place the WAR file in dropins.
+
 ### Admin Service
+This starts as disabled if you want it make sure you uncomment the admin feature in addition to the security config tag.
 <https://localhost:9443/adminCenter> 
 
 username:admin 
 
 password:adminpwd
-
-## Issues
-If you see exceptions about resolving portletcontainer in the logs under usr/servers/{serverName}/logs you may need to run the following commands. This should happen automatically.
-```sh
-bin/installUtility install portlet-2.1
-bin/installUtility install portletServing-2.1
-```
 
 ## References
 Document that helped me set this up <https://www.ibm.com/developerworks/community/blogs/7e2e8015-bf72-43b6-bacd-36565b67febc/entry/Using_WebSphere_Application_Server_for_Liberty_profile_to_deploy_and_run_Portlets?lang=en>
