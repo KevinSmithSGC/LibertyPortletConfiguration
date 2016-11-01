@@ -84,12 +84,12 @@
 
   <dataSource id="FrwkDataSource" jndiName="jdbc/frwkDataSource">
     <jdbcDriver libraryRef="OracleLib"/>
-    <properties.oracle URL="jdbc:oracle:thin:@//207.97.238.248:1521/SCGDEV10" password="C827ukva6" user="QMATWAS2"/>
+    <properties.oracle URL="jdbc:oracle:thin:@//207.97.238.248:1521/SCGDEV10" password="Pi7BukQ85" user="FRWKWAS2"/>
   </dataSource>
 
   <dataSource id="QmatDataSource" jndiName="jdbc/qmatCECDataSource">
     <jdbcDriver libraryRef="OracleLib"/>
-    <properties.oracle URL="jdbc:oracle:thin:@//207.97.238.248:1521/SCGDEV10" password="Pi7BukQ85" user="FRWKWAS2"/>
+    <properties.oracle URL="jdbc:oracle:thin:@//207.97.238.248:1521/SCGDEV10" password="C827ukva6" user="QMATWAS2"/>
   </dataSource>
 
 
