@@ -14,6 +14,7 @@
     <feature>wasJmsServer-1.0</feature>
     <!-- Enables the admin center. Not required -->
     <!-- <feature>adminCenter-1.0</feature> -->
+    <feature>jdbc-4.1</feature>
   </featureManager>
 
   <!-- Admin center specific config http://www.ibm.com/support/knowledgecenter/SSEQTP_8.5.5/com.ibm.websphere.wlp.doc/ae/twlp_ui_setup.html-->
