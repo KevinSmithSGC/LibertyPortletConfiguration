@@ -14,6 +14,9 @@ and run bin/server start
 Navigate to <http://localhost:9080/.SampleLibertyPortlet/SampleLibertyPortlet>
 
 ## Initial setup
+### Requirements
+Must have Java 1.7+ JRE installed and have JAVA_HOME set properly.
+
 ### Install WebSphere Liberty
 Navigate to <https://developer.ibm.com/wasdev/downloads/liberty-profile-using-non-eclipse-environments/> and download the zip archive.
 Extract the archive to any location under your control. To avoid windows filepath length issues make that folder as near root as possible.
@@ -23,6 +26,18 @@ Navigate to the extracted Liberty installation and run the following command to 
 ```sh
 bin/server create {serverName ex 'defaultServer'}
 ```
+
+### Install files
+
+Place files under usr/servers/{serverName} 
+
+### Install features
+
+Run the following command to install features.
+```sh
+bin/installUtility install {serverName}
+```
+
 ## Usage
 ### Configure Existing Server
 Place files into usr/servers/{serverName}
