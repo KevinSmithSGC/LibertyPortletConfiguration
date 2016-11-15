@@ -6,5 +6,7 @@ services:
     ports:
       - "9080:9080"
       - "9443:9443"
+      - "7777:7777"
     volumes:
       - .:/config
+    command: /opt/ibm/wlp/bin/server debug defaultServer
