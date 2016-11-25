@@ -1,0 +1,5 @@
+apps/*
+dropins/*
+configDropins/*
+!dropsin/SampleLibertyPortlet.war
+qmt/**

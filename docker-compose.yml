@@ -9,4 +9,5 @@ services:
       - "7777:7777"
     volumes:
       - .:/config
+      - ./qmt:/qmt
     command: /opt/ibm/wlp/bin/server debug defaultServer
