@@ -8,3 +8,4 @@ services:
       - "9443:9443"
     volumes:
       - .:/config
+      - ./qmt:/qmt
